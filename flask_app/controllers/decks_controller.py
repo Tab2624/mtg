@@ -12,6 +12,8 @@ def deck_get_all(id):
         'user_id': id
     }
     all_decks = Deck.get_user_decks(data)
+    all_decks = sorted(all_decks, key=lambda x: x["updated_at"], reverse=True)
+    print("ALL DECKS***************************", all_decks)
     return render_template("owned_decks.html", all_decks=all_decks)
 
 
@@ -26,7 +28,6 @@ def deck_new():
 def deck_create():
     if session.get("user_id") is None:
         return redirect("/")
-    print("REQUEST.FORM-------------->", request.form)
     is_valid = Deck.validate_stuff(request.form)
     if is_valid:
         data = {
@@ -34,7 +35,7 @@ def deck_create():
             "user_id": session["user_id"],
         }
         new_deck = Deck.create(data)
-        return redirect("/dashboard")
+        return redirect(f"/all/user/{session['user_id']}/decks")
     else:
         return redirect("/dashboard")
 
