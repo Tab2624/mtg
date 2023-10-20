@@ -35,7 +35,7 @@
             <button class="btn btn-primary mb-2 me-2">Logout</button>
           </form>
           <div> 
-            <a href="/all/user/{{session['user_id']}}/decks" class="btn btn-success">Your Decks</a>
+          <a href="/dashboard" class="btn btn-warning">Home</a>
           </div>
         </div>
 
@@ -65,22 +65,20 @@
         <thead>
           <tr class="table-dark text-light">
             <th scope="col" class="text-warning">Name</th>
-            <th scope="col" class="text-warning">Posted By</th>
+            <th scope="col" class="text-warning">Last Updated</th>
             <th scope="col" class="text-warning">Actions</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          {% for deck in decks %}
+          {% for deck in all_decks %}
           <tr>
             <td class="table-secondary">{{deck.name}}</td>
-            <td class="table-secondary">{{deck.user_instance.first_name}}</td>
+            <td class="table-secondary">{{deck.updated_at}}</td>
             <td class="table-secondary"> 
               <a href="/deck/{{deck.id}}">View deck</a>
-              {% if deck.user_instance.id == session['user_id'] %}
               <a href="/deck/{{deck.id}}/edit">Edit</a>
               <a href="/deck/{{deck.id}}/delete">Delete</a>
             </td>
-            {% endif %}
           </tr>
           {% endfor %}
         </tbody>

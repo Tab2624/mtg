@@ -6,10 +6,13 @@ from flask_app.models.cards_model import Card
 
 
 # CRUD #TODO ASSIGN TABEL NAME IN FUNCTION NAMES AND URLS
-@app.route("/TABLE_NAME/all")
-def TABLE_NAME_all():
-    # function actions
-    return render_template("index.html")
+@app.route("/all/user/<int:id>/decks")
+def deck_get_all(id):
+    data = {
+        'user_id': id
+    }
+    all_decks = Deck.get_user_decks(data)
+    return render_template("owned_decks.html", all_decks=all_decks)
 
 
 @app.route("/deck/new")

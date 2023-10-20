@@ -16,6 +16,14 @@ class Deck:  # TODO change class name// use pascel case
         # TODO Add additional columns from database here
 
     @classmethod
+    def get_user_decks(cls, data:dict):
+        query = "SELECT * FROM decks WHERE user_id = %(user_id)s"
+        results = connectToMySQL(DATABASE).query_db(query,data)
+        if not results:
+            return []
+        return results
+
+    @classmethod
     def create(cls, data: dict):
         query = "INSERT INTO decks(name, user_id) VALUE ( %(name)s, %(user_id)s )"
         new_row_id = connectToMySQL(DATABASE).query_db(
@@ -43,6 +51,7 @@ class Deck:  # TODO change class name// use pascel case
                 user_instance = users_model.User(data)
                 deck.user_instance = user_instance
                 decks.append(deck)
+                print("DECKS HERE*****************", decks)
 
         return decks
 
