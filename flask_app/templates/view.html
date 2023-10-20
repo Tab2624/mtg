@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/edit_view.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container bg-dark text-light mt-5">
+      <div class="navbar">
+        <h1>Welcome {{session['first_name']}}</h1>
+        <a href="/dashboard">back to decks</a>
+        <form action="/logout" method="POST">
+          <button class="btn btn-primary">Logout</button>
+        </form>
+      </div>
+
+      <h2>deck: {{deck.name}}</h2>
+      <h5>
+        Cards in deck: {{type_checking['creature_count'] +
+        type_checking['sorcery_count'] + type_checking['instant_count'] +
+        type_checking['artifact_count'] + type_checking['enchantment_count'] +
+        type_checking['land_count']}}
+      </h5>
+      <p>Posted by: {{deck.user_instance.first_name}}</p>
+
+      <div class="border border-dark">
+        {% if type_checking['Creature'] %}
+        <p id="creatures">Creatures ({{type_checking['creature_count']}}):</p>
+        {% for stuff in info %} {% if stuff.types == "Creature" %}
+        <img
+          src="{{stuff['img_url']}}"
+          alt=""
+          class="custom-modal-image rounded"
+        />
+        {% endif %} {% endfor %} {% endif %} {% if type_checking['Sorcery'] %}
+        <p id="sorceries">Sorceries ({{type_checking['sorcery_count']}}):</p>
+        {% for stuff in info %} {% if stuff.types == "Sorcery" %}
+        <img
+          src="{{stuff['img_url']}}"
+          alt=""
+          class="custom-modal-image rounded"
+        />
+        {% endif %} {% endfor %} {% endif %} {% if type_checking['Instant'] %}
+        <p id="instants">Instants ({{type_checking['instant_count']}}):</p>
+        {% for stuff in info %} {% if stuff.types == "Instant" %}
+        <img
+          src="{{stuff['img_url']}}"
+          alt=""
+          class="custom-modal-image rounded"
+        />
+        {% endif %} {% endfor %} {% endif %} {% if type_checking['Artifact'] %}
+        <p id="artifacts">Artifacts ({{type_checking['artifact_count']}}):</p>
+        {% for stuff in info %} {% if stuff.types == "Artifact" %}
+        <img
+          src="{{stuff['img_url']}}"
+          alt=""
+          class="custom-modal-image rounded"
+        />
+        {% endif %} {% endfor %} {% endif %} {% if type_checking['Enchantment']
+        %}
+        <p id="enchantments">
+          Enchantments ({{type_checking['enchantment_count']}}):
+        </p>
+        {% for stuff in info %} {% if stuff.types == "Enchantment" %}
+        <img
+          src="{{stuff['img_url']}}"
+          alt=""
+          class="custom-modal-image rounded"
+        />
+        {% endif %} {% endfor %} {% endif %} {% if type_checking['Land'] %}
+        <p id="lands">Lands ({{type_checking['land_count']}}):</p>
+        {% for stuff in info %} {% if stuff.types == "Land" %}
+        <img
+          src="{{stuff['img_url']}}"
+          alt=""
+          class="custom-modal-image rounded"
+        />
+        {% endif %} {% endfor %} {% endif %}
+      </div>
+
+      <!-- Custom Modal -->
+      <div id="customImageModal" class="custom-modal">
+        <span class="custom-close" id="customCloseModal">&times;</span>
+        <img id="customModalImage" class="custom-modal-content" />
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="position-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#top"> Back to top </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#creatures"> Creatures </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#sorceries"> Sorceries </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#instants"> Instants </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#artifacts"> Artifacts </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#enchantments"> Enchantments </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#lands"> Lands </a>
+                </li>
+                <!-- Add more items as needed -->
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
