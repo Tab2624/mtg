@@ -16,6 +16,7 @@
     />
   </head>
   <body>
+    <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F9%2Fc%2F9%2F337895.jpg&f=1&nofb=1&ipt=3ae290fb235f66f67a6edb31a8a39c9e541150a4563a649909ca0f4607ec0799&ipo=images" class="background-img" alt="">
     <div class="container bg-dark text-light mt-5">
       <div class="navbar">
         <div class="d-flex align-items-center"> 
@@ -37,7 +38,7 @@
         type_checking['artifact_count'] + type_checking['enchantment_count'] +
         type_checking['land_count']}}
       </h5>
-      <p>Posted by: {{deck.user_instance.first_name}}</p>
+      <p>Posted by: {{deck.user_instance.first_name}} // Updated: {{deck.updated_at.strftime('%m-%d-%Y')}}</p>
 
       <div class="border border-dark">
         {% if type_checking['Creature'] %}

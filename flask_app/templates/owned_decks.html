@@ -17,7 +17,7 @@
     />
   </head>
   <body>
-      <div class="container bg-dark text-light mt-5 p-2">
+      <div class="container bg-dark text-light mt-5 px-5">
       <div class="navbar align-items-center">
         <div>
           <div class="d-flex mt-3 gtfo"> 
@@ -54,7 +54,7 @@
               {% for message in get_flashed_messages(category_filter=['err_decks_new_name']) %}
             <p class= "err-msg text-danger"> {{message}}</p>
             {% endfor %}
-              <button id="customSaveDeckButton">Save</button>
+              <button id="customSaveDeckButton" class="btn btn-primary mb-1">Save</button>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
           {% for deck in all_decks %}
           <tr>
             <td class="table-secondary">{{deck.name}}</td>
-            <td class="table-secondary">{{deck.updated_at}}</td>
+            <td class="table-secondary">{{deck.updated_at.strftime('%Y-%m-%d')}}</td>
             <td class="table-secondary"> 
               <a href="/deck/{{deck.id}}">View deck</a>
               <a href="/deck/{{deck.id}}/edit">Edit</a>

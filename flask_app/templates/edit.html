@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_view.css') }}">
 </head>
 <body>
+  <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F9%2Fc%2F9%2F337895.jpg&f=1&nofb=1&ipt=3ae290fb235f66f67a6edb31a8a39c9e541150a4563a649909ca0f4607ec0799&ipo=images" class="background-img" alt="">
     <div class="container bg-dark text-light mt-5">
         <div class="navbar">
           <div class="d-flex">
@@ -26,7 +27,7 @@
             <form action="/deck/{{deck.id}}/update" method="POST" class="p-1"> 
               <label for="name" class="me-2">Name</label>
               <input type="text" name="name" id="name" value="{{deck.name}}"/>
-              <button class="ms-2">Save</button>
+              <button class="ms-2 btn btn-success mb-1">Save</button>
               {% for message in get_flashed_messages(category_filter=['err_decks_name']) %}
               <p class= "err-msg text-danger"> {{message}}</p>
               {% endfor %}
@@ -36,18 +37,21 @@
           <form action="/addcard/{{deck.id}}/update" method="POST" class="mb-3 p-1">
             <label for="name">Card to add</label>
             <input type="text" name="name" autofocus>
-            <button>Add Card</button>
+            <button class="btn btn-success mb-1 ms-2">Add Card</button>
             {% for message in get_flashed_messages(category_filter=['err_all_cards_name']) %}
             <p class= "err-msg text-danger"> {{message}}</p>
             {% endfor %}
           </form>
 
-          <h5>Cards in deck: {{type_checking['creature_count'] + type_checking['sorcery_count'] + type_checking['instant_count'] + type_checking['artifact_count'] + type_checking['enchantment_count'] + type_checking['land_count']}}</h5>
+          <div> 
+            <p>Last Update: {{deck.updated_at.strftime('%m-%d-%Y')}} At: {{ deck.updated_at.strftime('%I:%M %p') }}</p>
+            <h5>Cards in deck: {{type_checking['creature_count'] + type_checking['sorcery_count'] + type_checking['instant_count'] + type_checking['artifact_count'] + type_checking['enchantment_count'] + type_checking['land_count']}}</h5>
+          </div>
 
           <div class="border border-dark">
 
             {% if type_checking['Creature'] %} 
-            <p id="creatures">Creatures ({{type_checking['creature_count']}}):</p>
+            <p id="creatures" class="text-warning">Creatures ({{type_checking['creature_count']}}):</p>
             <div class="d-flex flex-wrap text-center"> 
             {% for stuff in info  %}
             {% if stuff.types == "Creature" %}
@@ -61,7 +65,7 @@
             {% endif %}
   
             {% if type_checking['Sorcery'] %} 
-            <p id="sorceries">Sorceries ({{type_checking['sorcery_count']}}):</p>
+            <p id="sorceries" class="text-warning">Sorceries ({{type_checking['sorcery_count']}}):</p>
             <div class="d-flex flex-wrap text-center"> 
             {% for stuff in info  %}
             {% if stuff.types == "Sorcery" %}
@@ -76,7 +80,7 @@
   
   
               {% if type_checking['Instant'] %}
-              <p id="instants">Instants ({{type_checking['instant_count']}}):</p>
+              <p id="instants" class="text-warning">Instants ({{type_checking['instant_count']}}):</p>
               <div class="d-flex flex-wrap text-center"> 
               {% for stuff in info  %}
               {% if stuff.types == "Instant" %}
@@ -90,7 +94,7 @@
               {% endif %}
               
               {% if type_checking['Artifact'] %}
-              <p id="artifacts">Artifacts ({{type_checking['artifact_count']}}):</p>
+              <p id="artifacts" class="text-warning">Artifacts ({{type_checking['artifact_count']}}):</p>
               <div class="d-flex flex-wrap text-center"> 
               {% for stuff in info  %}
               {% if stuff.types == "Artifact" %}
@@ -104,7 +108,7 @@
               {% endif %}
   
               {% if type_checking['Enchantment'] %}
-              <p id="enchantments">Enchantments ({{type_checking['enchantment_count']}}):</p>
+              <p id="enchantments" class="text-warning">Enchantments ({{type_checking['enchantment_count']}}):</p>
               <div class="d-flex flex-wrap text-center"> 
               {% for stuff in info  %}
               {% if stuff.types == "Enchantment" %}
@@ -118,7 +122,7 @@
               {% endif %}
   
               {% if type_checking['Land'] %}
-              <p id="lands">Lands ({{type_checking['land_count']}}):</p>
+              <p id="lands" class="text-warning">Lands ({{type_checking['land_count']}}):</p>
               <div class="d-flex flex-wrap text-center"> 
               {% for stuff in info  %}
               {% if stuff.types == "Land" %}

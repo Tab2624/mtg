@@ -13,14 +13,20 @@ img:hover {
   cursor: pointer;
 }
 
-body {
-  background-color: slategray;
-  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F6%2F58%2FsVkZR5.jpg&f=1&nofb=1&ipt=bfdcf050cb5f2c1607ce5da62268d4feaa1e4646009cb2e86f425749cefc9383&ipo=images");
-  background-size:auto;
-  background-repeat: repeat;
+.background-img{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top:0;
+  z-index:-1;
+  margin:0;
+  padding:0;
 }
 
-
+.background-img:hover{
+  scale:1;
+  cursor:default;
+}
 
 /* Custom Modal */
 .custom-modal {
@@ -45,6 +51,11 @@ body {
   width: 500px;
   height: auto;
   border-radius: 6%;
+}
+
+.custom-modal-content:hover{
+  scale:1;
+  cursor: default;
 }
 
 

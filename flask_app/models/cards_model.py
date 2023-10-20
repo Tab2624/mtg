@@ -118,7 +118,11 @@ class Card:  # TODO change class name// use pascel case
         query = "INSERT INTO cards (deck_id, all_card_id) VALUES (%s, %s);"
         data_to_insert = (data["deck_id"], result["id"])
         insert_results = connectToMySQL(DATABASE).query_db(query, data_to_insert)
-        # print("RESULT---------->", result)
+
+        query = "UPDATE decks SET updated_at = now() WHERE id = %(deck_id)s;"
+        connectToMySQL(DATABASE).query_db(query,data)
+
+
         return insert_results
 
     # @classmethod
