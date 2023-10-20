@@ -33,7 +33,6 @@ class AllCard:  # TODO change class name// use pascel case
         if list_of_dict:
             for deck in list_of_dict:
                 card = cls(deck)
-                print("card---------------------->", card)
                 data = {
                     **deck,
                     "id": deck["decks.id"],
@@ -81,7 +80,6 @@ class AllCard:  # TODO change class name// use pascel case
         query = "SELECT * FROM cards join decks on decks.id = cards.deck_id WHERE cards.id = %(id)s;"
         # make sure to call the connectToMySQL function with the schema you are targeting.
         list_of_dict = connectToMySQL(DATABASE).query_db(query, data)
-        print("QUERY HERE------------------->", list_of_dict)
         # Create an empty list to append our instances of friends
         # TODO make changes to variable names
 

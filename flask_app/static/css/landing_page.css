@@ -62,3 +62,10 @@ body {
 #website-icon{
     height: 150px;
 }
+
+#mtg-icon{
+    height: 100px;
+    margin-bottom: 400px;
+    position:absolute;
+    top: 30%;
+}

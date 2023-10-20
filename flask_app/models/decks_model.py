@@ -34,7 +34,6 @@ class Deck:  # TODO change class name// use pascel case
         if list_of_dict:
             for user in list_of_dict:
                 deck = cls(user)
-                print("deck---------------------->", deck)
                 data = {
                     **user,
                     "id": user["users.id"],
@@ -91,13 +90,11 @@ class Deck:  # TODO change class name// use pascel case
         query = "SELECT * FROM decks join users on users.id = decks.user_id WHERE decks.id = %(id)s;"
         # make sure to call the connectToMySQL function with the schema you are targeting.
         list_of_dict = connectToMySQL(DATABASE).query_db(query, data)
-        print("QUERY HERE------------------->", list_of_dict)
         # Create an empty list to append our instances of friends
         # TODO make changes to variable names
 
         if list_of_dict:
             deck = cls(list_of_dict[0])  # equal to our query
-            print("deck---------------------->", deck)
             data = {
                 **list_of_dict[0],
                 "id": list_of_dict[0]["users.id"],
