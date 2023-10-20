@@ -18,11 +18,14 @@
   </head>
   <body class="bg-secondary text-black">
     <div class="landing-container container text-center mt-5 bg-secondary h-25">
-      <div class="header me-5">
-        <h1>Welcome to MTGDeckBuilder</h1>
-        <p>Build Your Perfect Deck. Sign in or Register to get started!</p>
-        <a href="/login/register" class="btn btn-primary">Sign In / Register</a>
-      </div>
+      <div class="d-flex"> 
+      <img src="{{ url_for('static', filename='assets/card.png') }}" alt="card icon" id="website-icon" class="me-5">
+      <div class="header me-5"> 
+          <h1>Welcome to MTGDeckBuilder</h1>
+          <p>Build Your Perfect Deck. Sign in or Register to get started!</p>
+          <a href="/login/register" class="btn btn-primary">Sign In / Register</a>
+        </div>
+        </div>
       <div class="features">
         <div class="feature">
           <i class="fas fa-users"></i>

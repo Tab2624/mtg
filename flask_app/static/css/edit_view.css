@@ -44,6 +44,7 @@ body {
   border-radius: 6%;
 }
 
+
 /* Custom Close button */
 .custom-close {
   position: absolute;
@@ -80,4 +81,8 @@ body {
 /* Add a hover effect for links */
 #sidebar a:hover {
   background-color: #555;
+}
+
+#website-icon1{
+  height: 50px;
 }
