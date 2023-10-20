@@ -98,25 +98,6 @@ class AllCard:  # TODO change class name// use pascel case
 
         return card
 
-    # @classmethod
-    # def add_card(cls, data:dict):
-    #     print("DATA--------------->", data['deck_id'], "ALL DATA------------>", data)
-    #     query = "SELECT * from all_cards WHERE name= %(name)s;"
-    #     results= connectToMySQL(DATABASE).query_db(query, data)
-    #     print("results*******************************", results)
-    #     if not results:
-    #         return []
-
-    #     for result in results:
-    #         result = result
-    #         break
-    #     print("results2*******************************", results)
-    #     query = "INSERT INTO cards (deck_id, all_card_id) VALUES (%s, %s);"
-    #     data_to_insert = (data['deck_id'], result['id'])
-    #     insert_results = connectToMySQL(DATABASE).query_db(query, data_to_insert)
-
-    #     return insert_results
-
     @classmethod
     def get_cards(cls, data):
         query = """

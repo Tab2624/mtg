@@ -3,6 +3,8 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DATABASE
 from flask_app import app
 from flask_app.models.decks_model import Deck
+from flask_app.models.all_cards_model import AllCard
+from flask_app.models.cards_model import Card
 from mtgsdk import Card
 
 # from flask_app.models.model_name import Classname #TODO add class name, add model name
