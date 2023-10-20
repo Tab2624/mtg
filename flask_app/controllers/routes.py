@@ -15,7 +15,7 @@ def index():
 
 @app.route("/login/register")
 def login_register():
-    return render_template("login.html")
+    return render_template("register.html")
 
 
 @app.route("/dashboard")

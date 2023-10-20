@@ -16,7 +16,6 @@ body {
 }
 
 .landing-container {
-    background: url('your-background-image.jpg') no-repeat center center;
     background-size: cover;
     height: 100%;
     display: flex;

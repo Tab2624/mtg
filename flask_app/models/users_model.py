@@ -101,3 +101,35 @@ class User:
     def save(cls, data):
         query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
         return connectToMySQL(DATABASE).query_db(query, data)
+
+    @staticmethod
+    def validate_login(data: dict) -> bool:
+        is_valid = True
+        print("HELLO FROM VALIDATOR-------------------->")
+        print(data)
+
+        if len(data["email"]) < 2:
+            flash("Email too short", "err_users_email")
+        elif not EMAIL_REGEX.match(data["email"]):
+            flash("Invalid email address!", "err_users_login")
+            is_valid = (
+                False  # Remember, do not return False, but return the variable False!
+            )
+
+        if len(data["password"]) < 2:
+            flash("Password too short", "err_users_login")
+            is_valid = (
+                False  # Remember, do not return False, but return the variable False!
+            )
+        elif not PASSWORD_REGEX.match(data["password"]):
+            flash(
+                "Invalid Email/Password",
+                "err_users_login",
+            )
+            is_valid = (
+                False  # Remember, do not return False, but return the variable False!
+            )
+            if len(data["password"]) < 2 and len(data["email"]) < 2:
+                flash("Email/Password too short", "err_users_login")
+                is_valid = False  # Remember, do not return False, but return the variable False!
+        return is_valid

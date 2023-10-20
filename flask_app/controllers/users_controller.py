@@ -39,22 +39,30 @@ def logout():
     return redirect("/")
 
 
+@app.route('/user/login')
+def user_login():
+    return render_template('login.html')
+
+
 @app.post("/login")
 def login():
+    is_valid = User.validate_login(request.form)
+    if is_valid:
     # see if the username provided exists in the database
-    data = {"email": request.form["email"]}
-    user_in_db = User.get_by_email(data)
+        data = {"email": request.form["email"]}
+        user_in_db = User.get_by_email(data)
     # user is not registered in the db
-    if not user_in_db:
-        flash("Invalid Email/Password", "err_login_info")
-        return redirect("/login/register")
-    if not bcrypt.check_password_hash(user_in_db.password, request.form["password"]):
+        if not user_in_db:
+            flash("Invalid Email/Password", "err_login_info")
+            return redirect("/user/login")
+        if not bcrypt.check_password_hash(user_in_db.password, request.form["password"]):
         # if we get False after checking the password
-        flash("Invalid Email/Password", "err_login_info")
-        return redirect("/")
+            flash("Invalid Email/Password", "err_login_info")
+            return redirect("/")
     # if the passwords matched, we set the user_id into session
-    session["first_name"] = user_in_db.first_name
-    session["user_id"] = user_in_db.id
-    print("SESSION LOGIN---------------->", session)
+        session["first_name"] = user_in_db.first_name
+        session["user_id"] = user_in_db.id
+        print("SESSION LOGIN---------------->", session)
     # never render on a post!!!
-    return redirect("/dashboard")
+        return redirect("/dashboard")
+    else: return redirect('/user/login')
